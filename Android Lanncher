@@ -1,0 +1,47 @@
+Android Launcher:
+
+						-------------------------------------
+						|	------------------------------	|							
+						|	|							 |	|
+						|	|							 |	|
+						|	|							 |	|
+						|	|							 |	|
+						|	|							 |	|
+						|	|							 |	|
+						|	|							 |	|
+						|	|							 |	|
+						|	|						 	 | -|-----WorkSpace
+						|	|							 |	|
+						|	|							 |	|
+						|	|							-|--|-----CellLayout
+						|	|							 |	|
+						|	|							 |	|
+						|	|							 |	|
+						|	|							 |	|
+						|	|							 |	|
+						|	|							 |	|
+						|	------------------------------	|
+						|	------------------------------	|
+						|	|							 |	|
+						|	|							-|--|-----HotSeat
+						|	|							 |	|
+						|	|							 |	|
+						|	------------------------------	|
+						-------------------------------------
+
+
+ShortCut :
+
+Launcher.onCreate() ----->LauncherModel.startLoader()
+                    ----->LauncherModel.runBindSynchronousPage()
+                    ----->LauncherModel.bindWorkspace()
+                    ----->Launcher implements CallBack.finishBindingItems()
+                    ----->Launcher.completeAdd()
+                    ----->Launcher.completeAddShortcut()                        
+                    ----->Launcher.createShortcut()
+                    
+                          |BubbleTextView.applyFromShortcutInfo() ----> setTag(Object ShortCutInfo)
+                    ----->|
+                          |BubbleTextView.setOnClickListener(this) ----> Launcher.onClick(View view)  ---->
+
+                                Launcher.onClickAppShortcut(view) ---->startAppShortcutOrInfoActivity(view) ----> startActivitySafely();

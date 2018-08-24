@@ -1,0 +1,45 @@
+Handler线程间通信
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+子线程 ----> 主线程 
+
+public class HandlerActivity extends Activity {
+    Handler mMainHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Log.e("---MainThread---",msg.obj.toString());
+        }
+    };
+
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_handler);
+
+        new Thread("child_thread") {
+            @Override
+            public void run() {
+                super.run();
+                Message msg = new Message();
+                msg.obj = "news from child_thread";
+                mMainHandler.sendMessage(msg);
+            }
+        }.start();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
